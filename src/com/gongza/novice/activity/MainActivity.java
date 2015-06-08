@@ -1,4 +1,9 @@
-package com.gongza.novice;
+package com.gongza.novice.activity;
+
+import com.gongza.novice.R;
+import com.gongza.novice.R.id;
+import com.gongza.novice.R.layout;
+import com.gongza.novice.R.menu;
 
 import android.app.Activity;
 import android.os.Bundle;
