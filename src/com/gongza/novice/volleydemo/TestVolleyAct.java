@@ -1,15 +1,19 @@
 package com.gongza.novice.volleydemo;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.provider.SyncStateContract.Constants;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.gongza.novice.ApplicationNovice;
 import com.gongza.novice.R;
 import com.gongza.novice.volleydemo.volleyrequest.GsonRequest;
+import com.gongza.novice.volleydemo.volleyrequest.JsonObjectPostRequest;
 import com.gongza.novice.volleydemo.volleyrequest.Weather;
 import com.gongza.novice.volleydemo.volleyrequest.WeatherInfo;
 import com.gongza.novice.volleydemo.volleyrequest.XMLRequest;
@@ -173,7 +178,6 @@ public class TestVolleyAct extends Activity {
 
 	}
 
-	
 	/**
 	 * volley自带的普通请求Json
 	 */
@@ -193,4 +197,61 @@ public class TestVolleyAct extends Activity {
 				});
 
 	}
+
+	/**
+	 * 带保存cookies的
+	 * @param userName 
+	 * @param userPassword
+	 */
+	private void cookies(String userName, String userPassword) {
+		// 生成MD5
+		// userPassword = UserUtil.toLowerCaseMD5(userPassword);
+		// 转成成UTF-8
+		try {
+			userName = URLEncoder.encode(userName, "UTF-8");
+			userPassword = URLEncoder.encode(userPassword, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		HashMap<String, String> mMap = new HashMap<String, String>();
+		mMap.put("user_name", userName);
+		mMap.put("password", userPassword);
+		String url = "";
+		// 发起请求
+		JsonObjectPostRequest jsonObjectPostRequest = new JsonObjectPostRequest(
+				url, new Response.Listener<JSONObject>() {
+					@Override
+					public void onResponse(JSONObject jsonObject) {
+						// 从服务器响应response中的jsonObject中取出cookie的值，存到本地sharePreference
+						try {
+							// shareUtil.setLocalCookie(jsonObject.getString("Cookie"));
+							// shareUtil.apply();
+							jsonObject.getString("Cookie");
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+						try {
+							if (jsonObject.get("status").equals("success")) {
+								// 登录成功
+							}
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+					}
+				}, new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError volleyError) {
+						Toast.makeText(TestVolleyAct.this, "网络错误，登录失败！",
+								Toast.LENGTH_SHORT).show();
+					}
+				}, mMap);
+		// 取本地保存的cookie
+		// String localCookieStr = shareUtil.getLocalCookie();
+		String localCookieStr = "";
+		if (!localCookieStr.equals("")) {
+			jsonObjectPostRequest.setSendCookie(localCookieStr);// 向服务器发起post请求时加上cookie字段
+		}
+		ApplicationNovice.getHttpQueue().add(jsonObjectPostRequest);
+	}
+
 }
