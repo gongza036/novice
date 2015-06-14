@@ -1,4 +1,4 @@
-package com.gongza.novice.utils;
+package com.gongza.utils;
 
 
 import java.io.BufferedReader;

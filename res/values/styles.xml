@@ -17,4 +17,13 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <!-- 下拉刷新加载进度圈 -->
+    <style name="head_loading_progress">
+        <item name="android:indeterminateDrawable">@drawable/cube_ptr_head_loading_progress</item>
+        <item name="android:minWidth">71.0dip</item>
+        <item name="android:maxWidth">71.0dip</item>
+        <item name="android:minHeight">57.0dip</item>
+        <item name="android:maxHeight">57.0dip</item>
+    </style>
+    
 </resources>

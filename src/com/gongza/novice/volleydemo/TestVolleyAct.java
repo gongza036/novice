@@ -13,7 +13,6 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.provider.SyncStateContract.Constants;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -32,6 +31,11 @@ import com.gongza.novice.volleydemo.volleyrequest.Weather;
 import com.gongza.novice.volleydemo.volleyrequest.WeatherInfo;
 import com.gongza.novice.volleydemo.volleyrequest.XMLRequest;
 
+/**
+ * volley数据请求的例子
+ * @author gongza
+ *
+ */
 public class TestVolleyAct extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

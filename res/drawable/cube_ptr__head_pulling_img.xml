@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+　　     <item android:maxLevel="90"  android:drawable="@drawable/cube_ptr__head_loding01" />
+　　     <item android:maxLevel="100"  android:drawable="@drawable/cube_ptr__head_loding02" />
+　　     <item android:maxLevel="110" android:drawable="@drawable/cube_ptr__head_loding03" />
+　　     <item android:maxLevel="120" android:drawable="@drawable/cube_ptr__head_loding04" />
+　　     <item android:maxLevel="130"  android:drawable="@drawable/cube_ptr__head_loding05" />
+　　     <item android:maxLevel="140" android:drawable="@drawable/cube_ptr__head_loding06" />
+　　     <item android:maxLevel="150" android:drawable="@drawable/cube_ptr__head_loding07" />
+　　     <item android:maxLevel="160" android:drawable="@drawable/cube_ptr__head_loding08" />
+　　     <item android:maxLevel="170" android:drawable="@drawable/cube_ptr__head_loding09" />
+　　     <item android:maxLevel="180" android:drawable="@drawable/cube_ptr__head_loding10" />
+　　     <item android:maxLevel="190" android:drawable="@drawable/cube_ptr__head_loding11" />
+　　     <item android:maxLevel="200" android:drawable="@drawable/cube_ptr__head_loding12" />
+　　     <item android:maxLevel="210" android:drawable="@drawable/cube_ptr__head_loding13" />
+　　     <item android:maxLevel="220" android:drawable="@drawable/cube_ptr__head_loding14" />
+　　     <item android:maxLevel="230" android:drawable="@drawable/cube_ptr__head_loding15" />
+　　     <item android:maxLevel="240" android:drawable="@drawable/cube_ptr__head_loding14" />
+　　     <item android:maxLevel="250" android:drawable="@drawable/cube_ptr__head_loding13" />
+　　     <item android:maxLevel="260" android:drawable="@drawable/cube_ptr__head_loding12" />
+　　     <item android:maxLevel="270" android:drawable="@drawable/cube_ptr__head_loding11" />
+　　     <item android:maxLevel="280" android:drawable="@drawable/cube_ptr__head_loding10" />
+　　     <item android:maxLevel="290" android:drawable="@drawable/cube_ptr__head_loding09" />
+　　</level-list>

@@ -9,7 +9,7 @@
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    
+
     <application
         android:name="com.gongza.novice.ApplicationNovice"
         android:allowBackup="true"
@@ -24,6 +24,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.gongza.novice.ptrdemo.PtrMainActivity" >
+        </activity>
+        <activity android:name="com.gongza.novice.ptrdemo.PtrGongzActivity" >
+        </activity>
+        <activity android:name="com.gongza.novice.ptrdemo.PtrMateriaAct" >
         </activity>
     </application>
 
