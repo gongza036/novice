@@ -31,6 +31,8 @@
         </activity>
         <activity android:name="com.gongza.novice.ptrdemo.PtrMateriaAct" >
         </activity>
+        <activity android:name="com.gongza.novice.volleydemo.TestVolleyAct" >
+        </activity>
     </application>
 
 </manifest>
