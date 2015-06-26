@@ -11,11 +11,15 @@ public class ApplicationNovice extends Application {
 
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		super.onCreate();
+		//初始化Volley
 		queue = Volley.newRequestQueue(getApplicationContext());
 	}
 
+	/**
+	 * 获得Volley请求队列  
+	 * @return RequestQueue
+	 */
 	public static RequestQueue getHttpQueue() {
 		return queue;
 	}
