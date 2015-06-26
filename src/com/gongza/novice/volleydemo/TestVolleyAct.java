@@ -14,6 +14,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -33,17 +34,26 @@ import com.gongza.novice.volleydemo.volleyrequest.XMLRequest;
 
 /**
  * volley数据请求的例子
+ * 
  * @author gongza
  *
  */
 public class TestVolleyAct extends Activity {
+	private TextView tv_volley;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_volley);
+		initView();
 		// volley_Get();
 		// volley_Post();
 		XMLGet();
+	}
+	
+	private void initView() {
+		tv_volley=(TextView) findViewById(R.id.tv_volley);
+
 	}
 
 	@Override
@@ -132,6 +142,7 @@ public class TestVolleyAct extends Activity {
 										String pName = response
 												.getAttributeValue(0);
 										Log.d("TAG", "pName is " + pName);
+										tv_volley.setText(pName);
 									}
 									break;
 								}
@@ -204,7 +215,8 @@ public class TestVolleyAct extends Activity {
 
 	/**
 	 * 带保存cookies的
-	 * @param userName 
+	 * 
+	 * @param userName
 	 * @param userPassword
 	 */
 	private void cookies(String userName, String userPassword) {
