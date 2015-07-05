@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:layout_margin="3dp"
+    android:background="@drawable/recyclerview_bg_selector" >
+
+    <TextView
+        android:id="@+id/tv_item"
+        android:layout_width="72dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center" />
+
+</FrameLayout>
