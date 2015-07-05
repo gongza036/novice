@@ -1,4 +1,4 @@
-package com.gongza.views.gridView;
+package com.gongza.views.gridview;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

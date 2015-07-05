@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     tools:context="com.gongza.novice.fragment.Tab02Fragment" >
 
-    <TextView
-        android:id="@+id/tv_dian"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="第二个界面点我" />
+    <LinearLayout
+        android:id="@+id/layout_tab2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+    </LinearLayout>
 
 </RelativeLayout>

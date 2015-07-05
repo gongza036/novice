@@ -5,6 +5,9 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,9 +21,9 @@ import com.gongza.novice.fragment.Tab02Fragment;
 import com.gongza.novice.fragment.Tab03Fragment;
 import com.gongza.novice.fragment.Tab04Fragment;
 
-
 /**
- * 主界面  
+ * 主界面
+ * 
  * @author gongza
  *
  */
@@ -30,7 +33,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private FragmentManager fragmentManager;
 
 	private Fragment mTab01;
-	private Fragment mTab02;
+	private Tab02Fragment mTab02;
 	private Fragment mTab03;
 	private Fragment mTab04;
 
@@ -51,12 +54,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		tv_tab2.setOnClickListener(this);
 		tv_tab3.setOnClickListener(this);
 		tv_tab4.setOnClickListener(this);
-		
+
 		fragmentManager = getFragmentManager();
 		setTabSelection(0);
 	}
 
-	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -76,7 +78,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		default:
 			break;
 		}
-		
+
 	}
 
 	private void setTabSelection(int index) {
@@ -157,12 +159,28 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		switch (item.getItemId()) {
+		case R.id.action_gridview:
+			mTab02.actionGridView();
+			break;
+		case R.id.action_listview:
+			mTab02.actionListView();
+			break;
+		case R.id.action_staggered:
+			mTab02.actionStaggered();
+			break;
+		case R.id.action_hor_gridview:
+			mTab02.actionHorizontalGridView();
+			break;
+		case R.id.action_add:
+			mTab02.actionAdd();
+			break;
+		case R.id.action_delete:
+			mTab02.actionDelete();
+			break;
+
+		default:
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

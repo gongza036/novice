@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gongza.views.gridView;
+package com.gongza.views.gridview;
 
 import android.content.Context;
 import android.database.DataSetObservable;
