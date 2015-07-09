@@ -14,7 +14,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -42,6 +44,7 @@ public class Tab02Fragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.tab_2, container, false);
+//		View view = inflater.inflate(R.layout.tab_2_rl, container, false);
 		initData();
 		initView(view, inflater);
 		return view;
@@ -58,6 +61,7 @@ public class Tab02Fragment extends Fragment {
 		layout_tab2 = (LinearLayout) view.findViewById(R.id.layout_tab2);
 		mRecyclerView = new RecyclerView(getActivity());
 		layout_tab2.addView(mRecyclerView);
+//		mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_tab2);
 		adapter = new SimpleRLAdapter(getActivity(), datas);
 		mRecyclerView.setAdapter(adapter);
 		// 设置布局管理器
@@ -85,6 +89,7 @@ public class Tab02Fragment extends Fragment {
 			}
 		});
 
+		
 	}
 
 	@Override

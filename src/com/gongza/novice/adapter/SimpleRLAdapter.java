@@ -2,17 +2,17 @@ package com.gongza.novice.adapter;
 
 import java.util.List;
 
-import com.gongza.novice.R;
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.gongza.novice.R;
 
 /**
  * RecyclerView 的Adapter
