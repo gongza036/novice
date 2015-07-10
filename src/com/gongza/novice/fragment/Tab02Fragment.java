@@ -14,14 +14,14 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.gongza.novice.R;
+import com.gongza.novice.adapter.Bookends;
+import com.gongza.novice.adapter.RecyclerViewHeader;
 import com.gongza.novice.adapter.SimpleRLAdapter;
 import com.gongza.novice.adapter.SimpleRLAdapter.OnItemClickListener;
 import com.gongza.novice.adapter.StaggeredRLAdapterN;
@@ -39,6 +39,7 @@ public class Tab02Fragment extends Fragment {
 
 //	private StaggeredRLAdapter staggeredAdapter;
 	private StaggeredRLAdapterN staggeredAdapter;
+	private Bookends<SimpleRLAdapter> mBookends;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,6 +65,17 @@ public class Tab02Fragment extends Fragment {
 //		mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_tab2);
 		adapter = new SimpleRLAdapter(getActivity(), datas);
 		mRecyclerView.setAdapter(adapter);
+		//第一种增加头部的方法   
+		RecyclerViewHeader header = RecyclerViewHeader.fromXml(getActivity(), R.layout.tab2_rl_header);
+		
+		//第二种种增加头部的方法    
+//		mBookends=new Bookends<SimpleRLAdapter>(adapter);
+//		View headerView=inflater.inflate(R.layout.tab2_rl_header, null, false);
+//		View headerView=LayoutInflater.from(getActivity()).inflate(R.layout.tab2_rl_header, layout_tab2, false);
+//		View footerView=LayoutInflater.from(getActivity()).inflate(R.layout.tab2_rl_footer, layout_tab2, false);
+//		mBookends.addHeader(headerView);
+//		mBookends.addFooter(footerView);
+//		mRecyclerView.setAdapter(mBookends);
 		// 设置布局管理器
 		LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(
 				getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -88,7 +100,8 @@ public class Tab02Fragment extends Fragment {
 						Toast.LENGTH_SHORT).show();
 			}
 		});
-
+		//第一种增加头部的方法   
+		header.attachTo(mRecyclerView);
 		
 	}
 
