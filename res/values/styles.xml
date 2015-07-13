@@ -26,4 +26,13 @@
         <item name="android:maxHeight">57.0dip</item>
     </style>
     
+    <!-- 上拉加载进度圈_g -->
+    <style name="hehua_progressbar_g">
+	　　<item name="android:indeterminateDrawable">@drawable/hehua_progress_g</item>
+	　　<item name="android:minWidth">20dip</item>
+	　　<item name="android:maxWidth">20dip</item>
+	　　<item name="android:minHeight">20dip</item>
+	　　<item name="android:maxHeight">20dip</item>
+	</style>
+    
 </resources>

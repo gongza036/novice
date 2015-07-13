@@ -25,6 +25,9 @@ import com.gongza.novice.adapter.RecyclerViewHeader;
 import com.gongza.novice.adapter.SimpleRLAdapter;
 import com.gongza.novice.adapter.SimpleRLAdapter.OnItemClickListener;
 import com.gongza.novice.adapter.StaggeredRLAdapterN;
+import com.gongza.views.listviewtools.HehuaPullToRefreshView;
+import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnFooterRefreshListener;
+import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnHeaderRefreshListener;
 
 /**
  * 
