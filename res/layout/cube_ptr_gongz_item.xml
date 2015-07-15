@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:gravity="center"
+        android:textColor="#44ffffff"
         android:text="ListView Item" />
 
 </LinearLayout>

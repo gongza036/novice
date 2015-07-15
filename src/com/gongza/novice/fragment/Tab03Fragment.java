@@ -1,17 +1,24 @@
 package com.gongza.novice.fragment;
 
 import com.gongza.novice.R;
+import com.gongza.novice.activity.MovingImageViewAct;
 import com.gongza.novice.adapter.PtrGongzAdapter;
 import com.gongza.views.listviewtools.HehuaPullToRefreshView;
 import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnFooterRefreshListener;
 import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnHeaderRefreshListener;
+import com.gongza.views.movingimageview.MovingImageView;
 
+import android.animation.Animator;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -23,11 +30,19 @@ import android.widget.SimpleAdapter;
 public class Tab03Fragment extends Fragment {
 	private HehuaPullToRefreshView layout_refresh;
 	private ListView lv_tab3;
+	
+	MovingImageView image;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.tab_3, container, false);
+		initView(view);
+		
+		return view;
+	}
+	
+	private void initView(View view) {
 		lv_tab3 = (ListView) view.findViewById(R.id.lv_tab3);
 		PtrGongzAdapter adapter = new PtrGongzAdapter(getActivity());
 		lv_tab3.setAdapter(adapter);
@@ -74,7 +89,39 @@ public class Tab03Fragment extends Fragment {
 
 					}
 				});
+		lv_tab3.setOnItemClickListener(new OnItemClickListener() {
 
-		return view;
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				startActivity(new Intent(getActivity(), MovingImageViewAct.class));
+			}
+			
+		});
+
+		
+		image = (MovingImageView) view.findViewById(R.id.image);
+		image.getMovingAnimator().addListener(new Animator.AnimatorListener() {
+			@Override
+			public void onAnimationStart(Animator animation) {
+				Log.i("Sample MovingImageView", "Start");
+			}
+
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				Log.i("Sample MovingImageView", "End");
+			}
+
+			@Override
+			public void onAnimationCancel(Animator animation) {
+				Log.i("Sample MovingImageView", "Cancel");
+			}
+
+			@Override
+			public void onAnimationRepeat(Animator animation) {
+				Log.i("Sample MovingImageView", "Repeat");
+			}
+		});
 	}
+	
 }
