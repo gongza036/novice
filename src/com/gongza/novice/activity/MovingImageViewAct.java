@@ -16,6 +16,7 @@ import android.widget.Toast;
   * @ClassName: MovingImageViewAct
   * @Description: 自动移动的imageView的demo  
   * 出处https://github.com/AlbertGrobas/MovingImageView
+  * 另外KenBurnsView 这个控件也能实现类似效果
   * @author gongza
   * @date 2015年7月15日 下午4:56:31
   *
