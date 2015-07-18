@@ -33,6 +33,8 @@
         </activity>
         <activity android:name="com.gongza.novice.volleydemo.TestVolleyAct" >
         </activity>
+        <activity android:name="com.gongza.novice.activity.MovingImageViewAct" >
+        </activity>
     </application>
 
 </manifest>
