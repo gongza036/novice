@@ -86,7 +86,7 @@ public class SimpleRLAdapter extends RecyclerView.Adapter<GzViewHolder> {
 					int layoutPosition = holder.getLayoutPosition();
 					mOnItemClickListener.onItemLongClick(holder.itemView,
 							layoutPosition);
-					return false;
+					return true;
 				}
 			});
 		}
