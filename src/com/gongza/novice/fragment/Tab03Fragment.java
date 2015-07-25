@@ -2,6 +2,7 @@ package com.gongza.novice.fragment;
 
 import com.gongza.novice.R;
 import com.gongza.novice.activity.MovingImageViewAct;
+import com.gongza.novice.activity.ProgressWheelAct;
 import com.gongza.novice.adapter.PtrGongzAdapter;
 import com.gongza.views.listviewtools.HehuaPullToRefreshView;
 import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnFooterRefreshListener;
@@ -94,7 +95,18 @@ public class Tab03Fragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				startActivity(new Intent(getActivity(), MovingImageViewAct.class));
+				
+				switch (position) {
+				case 0:
+					startActivity(new Intent(getActivity(), MovingImageViewAct.class));
+					break;
+				case 1:
+					startActivity(new Intent(getActivity(), ProgressWheelAct.class));
+					break;
+
+				default:
+					break;
+				}
 			}
 			
 		});

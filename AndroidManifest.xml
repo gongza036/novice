@@ -35,6 +35,8 @@
         </activity>
         <activity android:name="com.gongza.novice.activity.MovingImageViewAct" >
         </activity>
+        <activity android:name="com.gongza.novice.activity.ProgressWheelAct" >
+        </activity>
     </application>
 
 </manifest>
