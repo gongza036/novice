@@ -21,6 +21,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.android.volley.toolbox.Volley;
+import com.gongza.novice.ApplicationNovice;
 import com.gongza.novice.R;
 import com.gongza.novice.bean.group.GeekGroupBeanN;
 import com.gongza.novice.volleydemo.volleyrequest.BitmapCache;
@@ -30,6 +31,8 @@ public class VolleyRLAdapter extends RecyclerView.Adapter<VolleyRlHolder> {
 	private Context context;
 	// protected List<String> mDatas;
 	protected ArrayList<GeekGroupBeanN> mDatas;
+	private RequestQueue mQueue;
+	private ImageLoader imageLoader;
 
 	private static final int TYPE_0 = 0;
 	private static final int TYPE_1 = 1;
@@ -50,6 +53,8 @@ public class VolleyRLAdapter extends RecyclerView.Adapter<VolleyRlHolder> {
 		this.context = context;
 		this.mDatas = datas;
 		inflater = LayoutInflater.from(context);
+		mQueue = ApplicationNovice.getHttpQueue();
+		imageLoader = new ImageLoader(mQueue, new BitmapCache());
 	}
 
 	@Override
@@ -125,11 +130,10 @@ public class VolleyRLAdapter extends RecyclerView.Adapter<VolleyRlHolder> {
 
 	private void itemShowGroup(VolleyRlHolder parentView,
 			final GeekGroupBeanN gb, final int position) {
-		
 
 		displayImg(parentView.iv_picture, gb.getGroup().getPicture());
 		displayImg(parentView.iv_head, gb.getGeek().getGeek_logo());
-		
+
 		parentView.tv_geek_name.setText(gb.getGeek().getGeek_name());
 
 		parentView.tv_region_name.setText(gb.getGeek().getRegion_name());
@@ -203,17 +207,10 @@ public class VolleyRLAdapter extends RecyclerView.Adapter<VolleyRlHolder> {
 
 	}
 
-	private void displayImg(ImageView imageView,String url) {
-		// ImageView imageView = (ImageView)this.findViewById(R.id.image_view);
-		RequestQueue mQueue = Volley.newRequestQueue(context
-				.getApplicationContext());
-
-		ImageLoader imageLoader = new ImageLoader(mQueue, new BitmapCache());
-
+	private void displayImg(ImageView imageView, String url) {
 		ImageListener listener = ImageLoader.getImageListener(imageView,
 				R.drawable.ic_launcher, R.drawable.ic_launcher);
-		imageLoader.get(url,
-				listener);
+		imageLoader.get(url, listener);
 		// 指定图片允许的最大宽度和高度
 		// imageLoader.get("http://developer.android.com/images/home/aw_dac.png",listener,
 		// 200, 200);
@@ -222,26 +219,13 @@ public class VolleyRLAdapter extends RecyclerView.Adapter<VolleyRlHolder> {
 }
 
 class VolleyRlHolder extends ViewHolder {
-	TextView tv_item;
+	TextView tv_item, tv_geek_name, tv_region_name, tv_group_name,
+			tv_group_price, tv_orginal_price, tv_lave_time, tv_group_desc,
+			tv_share_num, tv_g_member, tv_praise_num;
 	RelativeLayout head_layout;
-	ImageView iv_head;
-	TextView tv_geek_name;
-	TextView tv_region_name;
-	ImageView iv_picture;
-	TextView tv_group_name;
-	TextView tv_group_price;
-	TextView tv_orginal_price;
-	ImageView iv_soldout;
-	TextView tv_lave_time;
-	TextView tv_group_desc;
-	TextView tv_share_num;
-	LinearLayout layout_sell_num;
-	LinearLayout layout_g_member;
-	TextView tv_g_member;
-	LinearLayout layout_praise_num;
-	ImageView iv_praise_num;
-	TextView tv_praise_num;
-	LinearLayout layou_item;
+	ImageView iv_head, iv_picture, iv_soldout, iv_praise_num;
+	LinearLayout layout_sell_num, layout_g_member, layout_praise_num,
+			layou_item;
 
 	public VolleyRlHolder(View itemView) {
 		super(itemView);
