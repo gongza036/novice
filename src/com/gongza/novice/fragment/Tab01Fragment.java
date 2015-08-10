@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.gongza.novice.R;
 import com.gongza.novice.ptrdemo.PtrMainActivity;
 import com.gongza.novice.volleydemo.TestVolleyAct;
+import com.gongza.novice.volleydemo.VolleyRecycelrViewAct;
 
 /**
  * 
@@ -19,7 +20,7 @@ import com.gongza.novice.volleydemo.TestVolleyAct;
  *
  */
 public class Tab01Fragment extends Fragment implements OnClickListener {
-	private LinearLayout layout_ptrpull, layout_volley;
+	private LinearLayout layout_ptrpull, layout_volley,layout_volley_recycler;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,8 +33,10 @@ public class Tab01Fragment extends Fragment implements OnClickListener {
 	private void initView(View view, LayoutInflater inflater) {
 		layout_ptrpull = (LinearLayout) view.findViewById(R.id.layout_ptrpull);
 		layout_volley = (LinearLayout) view.findViewById(R.id.layout_volley);
+		layout_volley_recycler = (LinearLayout) view.findViewById(R.id.layout_volley_recycler);
 		layout_ptrpull.setOnClickListener(this);
 		layout_volley.setOnClickListener(this);
+		layout_volley_recycler.setOnClickListener(this);
 	}
 
 	@Override
@@ -44,6 +47,9 @@ public class Tab01Fragment extends Fragment implements OnClickListener {
 			break;
 		case R.id.layout_volley:
 			startActivity(new Intent(getActivity(), TestVolleyAct.class));
+			break;
+		case R.id.layout_volley_recycler:
+			startActivity(new Intent(getActivity(), VolleyRecycelrViewAct.class));
 			break;
 
 		default:
