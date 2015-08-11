@@ -61,16 +61,16 @@ public class VolleyRLAdapter extends RecyclerView.Adapter<ViewHolder> {
 		return mDatas.size();
 	}
 
-	// @Override
-	// public int getItemViewType(int position) {
-	// if (mDatas.get(position).getType() == 0) {
-	// return TYPE_0;
-	// } else if (mDatas.get(position).getType() == 1) {
-	// return TYPE_1;
-	// } else {
-	// return 100;
-	// }
-	// }
+	@Override
+	public int getItemViewType(int position) {
+	 if (mDatas.get(position).getType() == 0) {
+		 return TYPE_0;
+	 	} else if (mDatas.get(position).getType() == 1) {
+	 		return TYPE_1;
+	 	} else {
+	 		return 100;
+	 	}
+	 }
 
 	public void addData(int pos) {
 		// mDatas.add(pos, "加了一条");
@@ -92,15 +92,14 @@ public class VolleyRLAdapter extends RecyclerView.Adapter<ViewHolder> {
 //		}
 		 if (mDatas.get(pos).getType() == 0&&holder instanceof VolleyRlHolder) {
 			 itemShowGroup((VolleyRlHolder)holder, mDatas.get(pos), pos);
-//	            ((VolleyRlHolder) holder).mTextView.setText(mTitles[position]);
 	        } else if (mDatas.get(pos).getType() == 1&&holder instanceof VolleyAdHolder) {
-//	            ((VolleyAdHolder) holder).mTextView.setText(mTitles[position]);
+	        	itemShowAd((VolleyAdHolder)holder, mDatas.get(pos), pos);
 	        }
 		
-//		 setUpItemEvent(holder);
+		 setUpItemEvent(holder);
 	}
 
-	protected void setUpItemEvent(final VolleyRlHolder holder) {
+	protected void setUpItemEvent(final ViewHolder holder) {
 		if (mOnItemClickListener != null) {
 
 			holder.itemView.setOnClickListener(new OnClickListener() {
@@ -219,6 +218,20 @@ public class VolleyRLAdapter extends RecyclerView.Adapter<ViewHolder> {
 			// 已喜欢的不让取消
 			// parentView.layout_praise_num.setTag(iv_praise_num);
 		}
+
+	}
+	
+	private void itemShowAd(VolleyAdHolder parentView, final GeekGroupBeanN gb,
+			final int position) {
+		
+		displayImg(parentView.iv_itemad, gb.getOperation().getThumb());
+		
+		parentView.iv_itemad.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+			}
+		});
 
 	}
 

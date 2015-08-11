@@ -58,8 +58,8 @@ public class GroupRecommParser {
 			listGroupOperations=getOperations(jsonOb.getJSONArray("operations"));
 			try {ri.setOperations(listGroupOperations);} catch (Exception e) {e.printStackTrace();System.out.println("json解析--Operations出错");}
 		}
-//		ri.setList(getlist(jsonOb.getJSONArray("list"),listGroupOperations));
-		ri.setList(getlist(jsonOb.getJSONArray("list"),null));
+		ri.setList(getlist(jsonOb.getJSONArray("list"),listGroupOperations));
+//		ri.setList(getlist(jsonOb.getJSONArray("list"),null));
 		return ri;
 	}
 
