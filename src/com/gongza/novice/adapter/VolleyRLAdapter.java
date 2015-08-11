@@ -20,13 +20,12 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
-import com.android.volley.toolbox.Volley;
 import com.gongza.novice.ApplicationNovice;
 import com.gongza.novice.R;
 import com.gongza.novice.bean.group.GeekGroupBeanN;
 import com.gongza.novice.volleydemo.volleyrequest.BitmapCache;
 
-public class VolleyRLAdapter extends RecyclerView.Adapter<VolleyRlHolder> {
+public class VolleyRLAdapter extends RecyclerView.Adapter<ViewHolder> {
 	private LayoutInflater inflater;
 	private Context context;
 	// protected List<String> mDatas;
@@ -84,14 +83,21 @@ public class VolleyRLAdapter extends RecyclerView.Adapter<VolleyRlHolder> {
 	}
 
 	@Override
-	public void onBindViewHolder(final VolleyRlHolder holder, int pos) {
+	public void onBindViewHolder(final ViewHolder holder, int pos) {
 		// 绑定ViewHolder里的数据
 		// holder.tv_item.setText(mDatas.get(pos));
-		if (mDatas.get(pos).getType() == 0) {
-			// holder.tv_item.setText(mDatas.get(pos).getGeek().getGeek_name());
-			itemShowGroup(holder, mDatas.get(pos), pos);
-		}
-		setUpItemEvent(holder);
+//		if (mDatas.get(pos).getType() == 0) {
+//			// holder.tv_item.setText(mDatas.get(pos).getGeek().getGeek_name());
+//			itemShowGroup(holder, mDatas.get(pos), pos);
+//		}
+		 if (mDatas.get(pos).getType() == 0&&holder instanceof VolleyRlHolder) {
+			 itemShowGroup((VolleyRlHolder)holder, mDatas.get(pos), pos);
+//	            ((VolleyRlHolder) holder).mTextView.setText(mTitles[position]);
+	        } else if (mDatas.get(pos).getType() == 1&&holder instanceof VolleyAdHolder) {
+//	            ((VolleyAdHolder) holder).mTextView.setText(mTitles[position]);
+	        }
+		
+//		 setUpItemEvent(holder);
 	}
 
 	protected void setUpItemEvent(final VolleyRlHolder holder) {
@@ -121,15 +127,24 @@ public class VolleyRLAdapter extends RecyclerView.Adapter<VolleyRlHolder> {
 	}
 
 	@Override
-	public VolleyRlHolder onCreateViewHolder(ViewGroup arg0, int arg1) {
-		// 创建ViewHolder
-		View view = inflater.inflate(R.layout.item_volleyrl_group, arg0, false);
-		VolleyRlHolder mGzViewHolder = new VolleyRlHolder(view);
-		return mGzViewHolder;
+	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+		if (viewType == 0) {
+			// 创建ViewHolder
+			View viewGroup = inflater.inflate(R.layout.item_volleyrl_group,
+					parent, false);
+			VolleyRlHolder mGzViewHolder = new VolleyRlHolder(viewGroup);
+			return mGzViewHolder;
+		} else {
+			View viewAd = inflater.inflate(R.layout.item_volleyrl_ad, parent,
+					false);
+			VolleyAdHolder mVolleyAdHolder = new VolleyAdHolder(viewAd);
+			return mVolleyAdHolder;
+		}
+
 	}
 
-	private void itemShowGroup(VolleyRlHolder parentView,
-			final GeekGroupBeanN gb, final int position) {
+	private void itemShowGroup(VolleyRlHolder parentView, final GeekGroupBeanN gb,
+			final int position) {
 
 		displayImg(parentView.iv_picture, gb.getGroup().getPicture());
 		displayImg(parentView.iv_head, gb.getGeek().getGeek_logo());
@@ -254,6 +269,17 @@ class VolleyRlHolder extends ViewHolder {
 		iv_praise_num = (ImageView) itemView.findViewById(R.id.iv_praise_num);
 		tv_praise_num = (TextView) itemView.findViewById(R.id.tv_praise_num);
 		layou_item = (LinearLayout) itemView.findViewById(R.id.layou_item);
+	}
+
+}
+
+class VolleyAdHolder extends ViewHolder {
+	ImageView iv_itemad;
+
+	public VolleyAdHolder(View itemView) {
+		super(itemView);
+
+		iv_itemad = (ImageView) itemView.findViewById(R.id.iv_itemad);
 	}
 
 }
