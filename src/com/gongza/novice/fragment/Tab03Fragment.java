@@ -1,6 +1,7 @@
 package com.gongza.novice.fragment;
 
 import com.gongza.novice.R;
+import com.gongza.novice.activity.ActivityJazzy;
 import com.gongza.novice.activity.MovingImageViewAct;
 import com.gongza.novice.activity.ProgressWheelAct;
 import com.gongza.novice.adapter.PtrGongzAdapter;
@@ -102,6 +103,9 @@ public class Tab03Fragment extends Fragment {
 					break;
 				case 1:
 					startActivity(new Intent(getActivity(), ProgressWheelAct.class));
+					break;
+				case 2:
+					startActivity(new Intent(getActivity(), ActivityJazzy.class));
 					break;
 
 				default:
