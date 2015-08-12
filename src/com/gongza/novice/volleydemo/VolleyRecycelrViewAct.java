@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.gongza.novice.ApplicationNovice;
 import com.gongza.novice.R;
+import com.gongza.novice.adapter.Bookends;
 import com.gongza.novice.adapter.VolleyRLAdapter;
 import com.gongza.novice.bean.HehuaResultBean;
 import com.gongza.novice.bean.group.GeekGroupBeanN;
@@ -31,6 +33,7 @@ public class VolleyRecycelrViewAct extends Activity {
 	private PtrGongzFrameLayout mPtrFrame;
 	private RecyclerView rl_volley;
 	private VolleyRLAdapter adapter;
+	private Bookends<VolleyRLAdapter> mBookends;
 //	private List<String> datas;
 	private ArrayList<GeekGroupBeanN> datas=new ArrayList<GeekGroupBeanN>();;
 
@@ -63,7 +66,8 @@ public class VolleyRecycelrViewAct extends Activity {
 						GroupRecommIndexBeanN listData = dataBean.getDataBean();
 						final ArrayList<GeekGroupBeanN> tList = listData.getList();
 						datas.addAll(tList);
-						adapter.notifyDataSetChanged();
+						mBookends.notifyDataSetChanged();//这里加了头尾的适配器mBookends后是刷新它
+						//adapter.notifyDataSetChanged();
 						updateComplete();
 					}
 				}, new Response.ErrorListener() {
@@ -83,6 +87,16 @@ public class VolleyRecycelrViewAct extends Activity {
 		rl_volley = (RecyclerView) findViewById(R.id.rl_volley);
 		adapter = new VolleyRLAdapter(VolleyRecycelrViewAct.this, datas);
 		rl_volley.setAdapter(adapter);
+		
+		//第二种种增加头部的方法    
+		mBookends=new Bookends<VolleyRLAdapter>(adapter);
+		View headerView=LayoutInflater.from(VolleyRecycelrViewAct.this).inflate(R.layout.tab2_rl_header, mPtrFrame, false);
+		View footerView=LayoutInflater.from(VolleyRecycelrViewAct.this).inflate(R.layout.tab2_rl_footer, mPtrFrame, false);
+		mBookends.addHeader(headerView);
+		mBookends.addFooter(footerView);
+		mBookends.setFooterVisibility(false);
+		rl_volley.setAdapter(mBookends);
+		
 		// 设置布局管理器
 		LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(
 				VolleyRecycelrViewAct.this, LinearLayoutManager.VERTICAL, false);
