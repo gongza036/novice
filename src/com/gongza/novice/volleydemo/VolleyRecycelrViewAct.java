@@ -94,7 +94,6 @@ public class VolleyRecycelrViewAct extends Activity {
 		View footerView=LayoutInflater.from(VolleyRecycelrViewAct.this).inflate(R.layout.tab2_rl_footer, mPtrFrame, false);
 		mBookends.addHeader(headerView);
 		mBookends.addFooter(footerView);
-		mBookends.setFooterVisibility(false);
 		rl_volley.setAdapter(mBookends);
 		
 		// 设置布局管理器
