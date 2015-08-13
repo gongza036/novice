@@ -21,7 +21,6 @@ import com.gongza.novice.R;
 import com.nineoldandroids.view.ViewHelper;
 
 public class JazzyViewPager extends ViewPager {
-
 	public static final String TAG = "JazzyViewPager";
 
 	private boolean mEnabled = true;
@@ -35,6 +34,9 @@ public class JazzyViewPager extends ViewPager {
 	private static final float SCALE_MAX = 0.5f;
 	private static final float ZOOM_MAX = 0.5f;
 	private static final float ROT_MAX = 15.0f;
+	
+	private float mDownX;//gz
+	private float mDownY;//gz
 
 	public enum TransitionEffect {
 		Standard,
@@ -59,7 +61,7 @@ public class JazzyViewPager extends ViewPager {
 	public JazzyViewPager(Context context) {
 		this(context, null);
 	}
-
+	
 	@SuppressWarnings("incomplete-switch")
 	public JazzyViewPager(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -575,5 +577,32 @@ public class JazzyViewPager extends ViewPager {
 		}
 		return null;
 	}
+	
+	//gz
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		// TODO Auto-generated method stub
+		switch (ev.getAction()) {
+		case MotionEvent.ACTION_DOWN:
+			mDownX = ev.getX();
+			mDownY = ev.getY();
+			getParent().requestDisallowInterceptTouchEvent(true);
+			break;
+		case MotionEvent.ACTION_MOVE:
+			if (Math.abs(ev.getX() - mDownX) > Math.abs(ev.getY() - 10*mDownY)) {
+				getParent().requestDisallowInterceptTouchEvent(true);
+			} else {
+				getParent().requestDisallowInterceptTouchEvent(false);
+			}
+			break;
+		case MotionEvent.ACTION_UP:
+
+		case MotionEvent.ACTION_CANCEL:
+			getParent().requestDisallowInterceptTouchEvent(false);
+			break;
+		}
+		return super.dispatchTouchEvent(ev);
+	}
+	
 	
 }
