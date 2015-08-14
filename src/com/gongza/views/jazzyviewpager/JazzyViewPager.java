@@ -589,7 +589,7 @@ public class JazzyViewPager extends ViewPager {
 			getParent().requestDisallowInterceptTouchEvent(true);
 			break;
 		case MotionEvent.ACTION_MOVE:
-			if (Math.abs(ev.getX() - mDownX) > Math.abs(ev.getY() - 10*mDownY)) {
+			if (Math.abs(ev.getX() - mDownX) > Math.abs(ev.getY() - mDownY)) {
 				getParent().requestDisallowInterceptTouchEvent(true);
 			} else {
 				getParent().requestDisallowInterceptTouchEvent(false);
