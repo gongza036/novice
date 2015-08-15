@@ -4,11 +4,19 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -76,7 +84,6 @@ public class VolleyRecycelrViewAct extends Activity {
 		viewpager_rl = (RelativeLayout) headerView
 				.findViewById(R.id.viewpager_rl);
 		viewPager.setTransitionEffect(TransitionEffect.Accordion);
-		
 
 		View footerView = LayoutInflater.from(VolleyRecycelrViewAct.this)
 				.inflate(R.layout.tab2_rl_footer, mPtrFrame, false);
@@ -89,6 +96,8 @@ public class VolleyRecycelrViewAct extends Activity {
 				VolleyRecycelrViewAct.this, LinearLayoutManager.VERTICAL, false);
 		rl_volley.setLayoutManager(mLinearLayoutManager);
 		rl_volley.setItemAnimator(new DefaultItemAnimator());
+		//添加滑动监听
+		rl_volley.addOnScrollListener(new RLOnScrollListener());
 	}
 
 	private void initPullView() {
@@ -98,7 +107,7 @@ public class VolleyRecycelrViewAct extends Activity {
 			@Override
 			public void onRefreshBegin(PtrFrameLayout frame) {
 				// updateData();
-				initData();
+				initData(true);
 				bannerAdData();
 			}
 
@@ -143,7 +152,7 @@ public class VolleyRecycelrViewAct extends Activity {
 		mPtrFrame.refreshComplete();
 	}
 
-	private void initData() {
+	private void initData(final boolean clear) {
 		// datas = new ArrayList<String>();
 		// for (int i = 'A'; i <= 'z'; i++) {
 		// datas.add("" + (char) i);
@@ -162,10 +171,17 @@ public class VolleyRecycelrViewAct extends Activity {
 						GroupRecommIndexBeanN listData = dataBean.getDataBean();
 						final ArrayList<GeekGroupBeanN> tList = listData
 								.getList();
-						datas.addAll(tList);
-						mBookends.notifyDataSetChanged();// 这里加了头尾的适配器mBookends后是刷新它
-						// adapter.notifyDataSetChanged();
+						
+						if (tList!=null&&tList.size()>0) {
+							if (clear) {
+								datas.clear();
+							}
+							datas.addAll(tList);
+							mBookends.notifyDataSetChanged();// 这里加了头尾的适配器mBookends后是刷新它
+							// adapter.notifyDataSetChanged();
+						}
 						updateComplete();
+						
 					}
 				}, new Response.ErrorListener() {
 
@@ -195,14 +211,14 @@ public class VolleyRecycelrViewAct extends Activity {
 								}.getType());
 						BanerAdDataBean listData = dataBean.getData();
 						adLists = listData.getList();
-						L.d("@@@@@@@"+adLists.size());
-						
-						bannerAdapter=new VolleyRecycelerViewPagerAdapter(
-								VolleyRecycelrViewAct.this, viewPager,adLists);
+						L.d("@@@@@@@" + adLists.size());
+
+						bannerAdapter = new VolleyRecycelerViewPagerAdapter(
+								VolleyRecycelrViewAct.this, viewPager, adLists);
 						viewPager.setAdapter(bannerAdapter);
-//						viewPager.setPageMargin(30);
-						
-//						bannerAdapter.notifyDataSetChanged();
+						// viewPager.setPageMargin(30);
+
+						// bannerAdapter.notifyDataSetChanged();
 					}
 				}, new Response.ErrorListener() {
 
@@ -217,4 +233,93 @@ public class VolleyRecycelrViewAct extends Activity {
 
 	}
 
+	class RLOnScrollListener extends
+			android.support.v7.widget.RecyclerView.OnScrollListener {
+		@Override
+		public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+			super.onScrolled(recyclerView, dx, dy);
+		}
+
+		@Override
+		public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+			// super.onScrollStateChanged(recyclerView, newState);
+			// 当前RecyclerView显示出来的最后一个的item的position
+			int lastPosition = -1;
+
+			// 当前状态为停止滑动状态SCROLL_STATE_IDLE时
+			if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+				RecyclerView.LayoutManager layoutManager = recyclerView
+						.getLayoutManager();
+				if (layoutManager instanceof GridLayoutManager) {
+					// 通过LayoutManager找到当前显示的最后的item的position
+					lastPosition = ((GridLayoutManager) layoutManager)
+							.findLastVisibleItemPosition();
+				} else if (layoutManager instanceof LinearLayoutManager) {
+					lastPosition = ((LinearLayoutManager) layoutManager)
+							.findLastVisibleItemPosition();
+				} else if (layoutManager instanceof StaggeredGridLayoutManager) {
+					// 因为StaggeredGridLayoutManager的特殊性可能导致最后显示的item存在多个，所以这里取到的是一个数组
+					// 得到这个数组后再取到数组中position值最大的那个就是最后显示的position值了
+					int[] lastPositions = new int[((StaggeredGridLayoutManager) layoutManager)
+							.getSpanCount()];
+					((StaggeredGridLayoutManager) layoutManager)
+							.findLastVisibleItemPositions(lastPositions);
+					lastPosition = findMax(lastPositions);
+				}
+
+				// 时判断界面显示的最后item的position是否等于itemCount总数-1也就是最后一个item的position
+				// 如果相等则说明已经滑动到最后了
+				if (lastPosition == recyclerView.getLayoutManager()
+						.getItemCount() - 1) {
+					Toast.makeText(VolleyRecycelrViewAct.this, "滑动到底了",
+							Toast.LENGTH_SHORT).show();
+					initData(false);
+				}
+
+			}
+		}
+
+		// 找到数组中的最大值
+		private int findMax(int[] lastPositions) {
+			int max = lastPositions[0];
+			for (int value : lastPositions) {
+				if (value > max) {
+					max = value;
+				}
+			}
+			return max;
+		}
+
+		
+		//item的显示动画
+		private Handler animHandler = new Handler() {
+
+			@Override
+			public void handleMessage(Message msg) {
+				super.handleMessage(msg);
+				View view = null;
+				switch (msg.what) {
+				case 400:
+					// 获得第一个item
+					view = rl_volley.getChildAt(0);
+					break;
+				case 500:
+					// 获得最后一个item
+					view = rl_volley.getChildAt(rl_volley.getChildCount() - 1);
+					break;
+
+				default:
+					break;
+				}
+
+				if (null != view) {
+					// 加载动画
+					Animation animation = AnimationUtils.loadAnimation(
+							VolleyRecycelrViewAct.this, R.anim.hehua_list_anim);
+					view.startAnimation(animation);
+				}
+			}
+		};
+
+	}
 }
