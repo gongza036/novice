@@ -13,7 +13,7 @@ import android.support.annotation.Nullable;
 
 import java.io.File;
 
-import com.gongza.utils.nviewutils.BitmapUtil;
+import com.gongza.utils.tools4u.BitmapUtil;
 
 /**
  * 从相册或者从照相机得到一个图片，没有裁剪功能.

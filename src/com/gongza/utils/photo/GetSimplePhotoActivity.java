@@ -11,7 +11,7 @@ import android.os.Environment;
 
 import java.io.File;
 
-import com.gongza.utils.nviewutils.IntentUtil;
+import com.gongza.utils.tools4u.IntentUtil;
 
 /**
  * 用来调用系统相册来获取图片的activity，仅供库内部使用。请不要在外部使用.
