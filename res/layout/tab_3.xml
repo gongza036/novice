@@ -15,7 +15,8 @@
             app:miv_min_relative_offset="0.2"
             app:miv_repetitions="-1"
             app:miv_speed="50"
-            app:miv_start_delay="1000" />
+            app:miv_start_delay="1000"
+            android:visibility="invisible" />
     
     <com.gongza.views.listviewtools.HehuaPullToRefreshView
         android:id="@+id/layout_refresh"

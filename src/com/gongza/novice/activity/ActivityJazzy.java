@@ -1,19 +1,19 @@
 package com.gongza.novice.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.view.LayoutInflater;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 
 import com.gongza.novice.R;
+import com.gongza.novice.fragment.FargmentV4Jazzy;
 import com.gongza.views.jazzyviewpager.JazzyViewPager;
 import com.gongza.views.jazzyviewpager.JazzyViewPager.TransitionEffect;
-import com.gongza.views.jazzyviewpager.OutlineContainer;
 
-public class ActivityJazzy extends Activity {
+public class ActivityJazzy extends FragmentActivity {
 	private JazzyViewPager mJazzy;
 
 	@Override
@@ -24,47 +24,53 @@ public class ActivityJazzy extends Activity {
 	}
 
 	private void initView() {
-		setupJazziness(TransitionEffect.Accordion);//参数是动画样式
+		setupJazziness(TransitionEffect.CubeOut);// 参数是动画样式
 	}
 
 	private void setupJazziness(TransitionEffect effect) {
 		mJazzy = (JazzyViewPager) findViewById(R.id.jazzy_pager);
 		mJazzy.setTransitionEffect(effect);
-		mJazzy.setAdapter(new MainAdapter());
+		mJazzy.setAdapter(new TabFragmentAdapter(getSupportFragmentManager()));
 		mJazzy.setPageMargin(30);
 	}
 
-	private class MainAdapter extends PagerAdapter {
-		@Override
-		public Object instantiateItem(ViewGroup container, final int position) {
-			
-			View view = LayoutInflater.from(ActivityJazzy.this).inflate(
-					R.layout.main_pager, null);
-			container.addView(view, LayoutParams.MATCH_PARENT,
-					LayoutParams.MATCH_PARENT);
+	private class TabFragmentAdapter extends FragmentPagerAdapter {
 
-			mJazzy.setObjectForPosition(view, position);
-			return view;
+		Fragment[] pages = new Fragment[] { new FargmentV4Jazzy(),
+				new FargmentV4Jazzy(), new FargmentV4Jazzy(),
+				new FargmentV4Jazzy() };
+
+		public TabFragmentAdapter(FragmentManager fm) {
+			super(fm);
 		}
 
 		@Override
-		public void destroyItem(ViewGroup container, int position, Object obj) {
-			container.removeView(mJazzy.findViewFromObject(position));
+		public Fragment getItem(int position) {
+			return pages[position];
 		}
 
 		@Override
 		public int getCount() {
-			return 10;
+			return pages.length;
+		}
+
+		// **************加上下面的两行即可实现换页时的动画效果*********************************//
+		@Override
+		public Object instantiateItem(ViewGroup container, int position) {
+			Object obj = super.instantiateItem(container, position);
+			mJazzy.setObjectForPosition(obj, position);
+			return obj;
 		}
 
 		@Override
-		public boolean isViewFromObject(View view, Object obj) {
-			if (view instanceof OutlineContainer) {
-				return ((OutlineContainer) view).getChildAt(0) == obj;
+		public boolean isViewFromObject(View view, Object object) {
+			if (object != null) {
+				return ((Fragment) object).getView() == view;
 			} else {
-				return view == obj;
+				return false;
 			}
 		}
+
 	}
 
 }

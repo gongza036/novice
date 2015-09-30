@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 public class PtrGongzAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
@@ -16,9 +17,9 @@ public class PtrGongzAdapter extends BaseAdapter {
 
 	public PtrGongzAdapter(Context mContext) {
 		mList = new ArrayList<String>();
-		mList.add("1");
-		mList.add("2");
-		mList.add("3");
+		mList.add("MovingImageView");
+		mList.add("ProgressWheel");
+		mList.add("JazzyViewPager4Fragment");
 		mList.add("4");
 		mList.add("5");
 		mList.add("6");
@@ -52,6 +53,8 @@ public class PtrGongzAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.cube_ptr_gongz_item, null);
 		}
+		TextView tv_item=(TextView) convertView.findViewById(R.id.tv_item);
+		tv_item.setText(mList.get(position));
 		return convertView;
 	}
 
