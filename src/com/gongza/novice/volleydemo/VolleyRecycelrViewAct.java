@@ -287,36 +287,5 @@ public class VolleyRecycelrViewAct extends Activity {
 			return max;
 		}
 
-		
-		//item的显示动画
-		private Handler animHandler = new Handler() {
-
-			@Override
-			public void handleMessage(Message msg) {
-				super.handleMessage(msg);
-				View view = null;
-				switch (msg.what) {
-				case 400:
-					// 获得第一个item
-					view = rl_volley.getChildAt(0);
-					break;
-				case 500:
-					// 获得最后一个item
-					view = rl_volley.getChildAt(rl_volley.getChildCount() - 1);
-					break;
-
-				default:
-					break;
-				}
-
-				if (null != view) {
-					// 加载动画
-					Animation animation = AnimationUtils.loadAnimation(
-							VolleyRecycelrViewAct.this, R.anim.hehua_list_anim);
-					view.startAnimation(animation);
-				}
-			}
-		};
-
 	}
 }
