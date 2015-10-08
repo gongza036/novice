@@ -61,6 +61,7 @@ public class PtrMainActivity extends Activity implements OnClickListener{
 		setupViews(mPtrFrame);
 		
 		tv_hello=(TextView) findViewById(R.id.tv_hello);
+		tv_hello.setText("可以点");
 		tv_hello.setOnClickListener(this);
 	}
 

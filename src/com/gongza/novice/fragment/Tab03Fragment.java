@@ -19,6 +19,9 @@ import com.gongza.novice.activity.ActivityWaterfallList;
 import com.gongza.novice.activity.MovingImageViewAct;
 import com.gongza.novice.activity.ProgressWheelAct;
 import com.gongza.novice.adapter.PtrGongzAdapter;
+import com.gongza.novice.ptrdemo.PtrMainActivity;
+import com.gongza.novice.volleydemo.TestVolleyAct;
+import com.gongza.novice.volleydemo.VolleyRecycelrViewAct;
 import com.gongza.views.listviewtools.HehuaPullToRefreshView;
 import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnFooterRefreshListener;
 import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnHeaderRefreshListener;
@@ -109,6 +112,15 @@ public class Tab03Fragment extends Fragment {
 					break;
 				case 3:
 					startActivity(new Intent(getActivity(), ActivityWaterfallList.class));
+					break;
+				case 4:
+					startActivity(new Intent(getActivity(), PtrMainActivity.class));
+					break;
+				case 5:
+					startActivity(new Intent(getActivity(), TestVolleyAct.class));
+					break;
+				case 6:
+					startActivity(new Intent(getActivity(), VolleyRecycelrViewAct.class));
 					break;
 
 				default:

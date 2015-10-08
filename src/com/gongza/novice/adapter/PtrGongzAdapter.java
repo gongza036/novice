@@ -21,9 +21,9 @@ public class PtrGongzAdapter extends BaseAdapter {
 		mList.add("ProgressWheel");
 		mList.add("JazzyViewPager4Fragment");
 		mList.add("WaterfallList");
-		mList.add("5");
-		mList.add("6");
-		mList.add("7");
+		mList.add("PtrClassicFrameLayout");
+		mList.add("Volley");
+		mList.add("Volley+RecyclerView...");
 		mList.add("8");
 		mList.add("9");
 		mList.add("10");

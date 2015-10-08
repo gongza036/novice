@@ -26,6 +26,7 @@ public class PtrMateriaAct extends Activity implements OnClickListener{
 	private void initView() {
 		tv_hello=(TextView) findViewById(R.id.tv_hello);
 		tv_hello.setOnClickListener(this);
+		tv_hello.setText("可以点2");		
 		mPtrFrameLayout = (PtrFrameLayout) findViewById(R.id.material_style_ptr_frame);
 		// header
 		final MaterialHeader header = new MaterialHeader(this);
