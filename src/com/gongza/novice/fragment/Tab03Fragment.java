@@ -1,15 +1,5 @@
 package com.gongza.novice.fragment;
 
-import com.gongza.novice.R;
-import com.gongza.novice.activity.ActivityJazzy;
-import com.gongza.novice.activity.MovingImageViewAct;
-import com.gongza.novice.activity.ProgressWheelAct;
-import com.gongza.novice.adapter.PtrGongzAdapter;
-import com.gongza.views.listviewtools.HehuaPullToRefreshView;
-import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnFooterRefreshListener;
-import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnHeaderRefreshListener;
-import com.gongza.views.movingimageview.MovingImageView;
-
 import android.animation.Animator;
 import android.app.Fragment;
 import android.content.Intent;
@@ -22,7 +12,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+
+import com.gongza.novice.R;
+import com.gongza.novice.activity.ActivityJazzy;
+import com.gongza.novice.activity.ActivityWaterfallList;
+import com.gongza.novice.activity.MovingImageViewAct;
+import com.gongza.novice.activity.ProgressWheelAct;
+import com.gongza.novice.adapter.PtrGongzAdapter;
+import com.gongza.views.listviewtools.HehuaPullToRefreshView;
+import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnFooterRefreshListener;
+import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnHeaderRefreshListener;
+import com.gongza.views.movingimageview.MovingImageView;
 
 /**
  * 
@@ -106,6 +106,9 @@ public class Tab03Fragment extends Fragment {
 					break;
 				case 2:
 					startActivity(new Intent(getActivity(), ActivityJazzy.class));
+					break;
+				case 3:
+					startActivity(new Intent(getActivity(), ActivityWaterfallList.class));
 					break;
 
 				default:

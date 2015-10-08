@@ -20,7 +20,7 @@ public class PtrGongzAdapter extends BaseAdapter {
 		mList.add("MovingImageView");
 		mList.add("ProgressWheel");
 		mList.add("JazzyViewPager4Fragment");
-		mList.add("4");
+		mList.add("WaterfallList");
 		mList.add("5");
 		mList.add("6");
 		mList.add("7");
