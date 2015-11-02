@@ -43,6 +43,8 @@
         </activity>
         <activity android:name="com.gongza.novice.activity.ActivityWaterfallList" >
         </activity>
+        <activity android:name="com.gongza.novice.activity.PullScrollViewAct" >
+        </activity>
     </application>
 
 </manifest>

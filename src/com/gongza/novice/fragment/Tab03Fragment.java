@@ -24,6 +24,7 @@ import com.gongza.novice.activity.ActivityJazzy;
 import com.gongza.novice.activity.ActivityWaterfallList;
 import com.gongza.novice.activity.MovingImageViewAct;
 import com.gongza.novice.activity.ProgressWheelAct;
+import com.gongza.novice.activity.PullScrollViewAct;
 import com.gongza.novice.adapter.PtrGongzAdapter;
 import com.gongza.novice.ptrdemo.PtrMainActivity;
 import com.gongza.novice.volleydemo.TestVolleyAct;
@@ -134,6 +135,10 @@ public class Tab03Fragment extends Fragment {
 					startActivity(new Intent(getActivity(),
 							VolleyRecycelrViewAct.class));
 					break;
+				case 7:
+					startActivity(new Intent(getActivity(),
+							PullScrollViewAct.class));
+					break;
 
 				default:
 					break;
@@ -170,7 +175,8 @@ public class Tab03Fragment extends Fragment {
 	private int startlastItemIndex;
 	private int endfirstItemIndex;
 	private int endlastItemIndex;
-	private Boolean isContentRefreshing = false;//刷新用的开关
+	private Boolean isContentRefreshing = false;// 刷新用的开关
+
 	// listview 滚动监听 上拉加载用的
 	class GzOnScrollListener implements
 			android.widget.AbsListView.OnScrollListener {
@@ -245,8 +251,7 @@ public class Tab03Fragment extends Fragment {
 				break;
 			case 500:
 				// 获得最后一个item
-				view = lv_tab3
-						.getChildAt(lv_tab3.getChildCount() - 1);
+				view = lv_tab3.getChildAt(lv_tab3.getChildCount() - 1);
 				break;
 
 			default:

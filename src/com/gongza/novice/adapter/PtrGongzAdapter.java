@@ -24,7 +24,7 @@ public class PtrGongzAdapter extends BaseAdapter {
 		mList.add("PtrClassicFrameLayout");
 		mList.add("Volley");
 		mList.add("Volley+RecyclerView...");
-		mList.add("8");
+		mList.add("PullScrollView");
 		mList.add("9");
 		mList.add("10");
 		mList.add("11");
@@ -53,7 +53,7 @@ public class PtrGongzAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.cube_ptr_gongz_item, null);
 		}
-		TextView tv_item=(TextView) convertView.findViewById(R.id.tv_item);
+		TextView tv_item = (TextView) convertView.findViewById(R.id.tv_item);
 		tv_item.setText(mList.get(position));
 		return convertView;
 	}
