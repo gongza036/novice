@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/bt_camera_large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="相机大图" />
+
+    <Button
+        android:id="@+id/bt_crop_large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="相册大图" />
+
+    <Button
+        android:id="@+id/bt_camera_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="相机小图" />
+
+    <Button
+        android:id="@+id/bt_crop_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="相机小图" />
+
+    <Button
+        android:id="@+id/bt_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取消" />
+
+</LinearLayout>

@@ -22,6 +22,7 @@ import android.widget.ListView;
 import com.gongza.novice.R;
 import com.gongza.novice.activity.ActivityJazzy;
 import com.gongza.novice.activity.ActivityWaterfallList;
+import com.gongza.novice.activity.CameraAct;
 import com.gongza.novice.activity.MovingImageViewAct;
 import com.gongza.novice.activity.ProgressWheelAct;
 import com.gongza.novice.activity.PullScrollViewAct;
@@ -138,6 +139,9 @@ public class Tab03Fragment extends Fragment {
 				case 7:
 					startActivity(new Intent(getActivity(),
 							PullScrollViewAct.class));
+					break;
+				case 8:
+					startActivity(new Intent(getActivity(), CameraAct.class));
 					break;
 
 				default:
