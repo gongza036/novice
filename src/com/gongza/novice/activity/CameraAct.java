@@ -45,14 +45,16 @@ public class CameraAct extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_camera);
-		// filePath();
 		initView();
+		// filePath();
 	}
 
-	// private void filePath() {
-	// tempFile = new File(getFilesDir().getAbsolutePath(),
-	// "/img/camera_act_tmp.jpg");
-	// }
+	private void filePath() {
+		// tempFile = new File(getFilesDir().getAbsolutePath(),
+		// "/img/camera_act_tmp.jpg");
+		File externalFilesDir = getExternalFilesDir("gongza");
+		tv_camera.setText(externalFilesDir.getAbsolutePath());
+	}
 
 	private void initView() {
 		bt_camera = (Button) findViewById(R.id.bt_camera);
@@ -368,5 +370,5 @@ public class CameraAct extends Activity implements OnClickListener {
 		Bitmap bm = bd.getBitmap();
 		return bm;
 	}
-	
+
 }
