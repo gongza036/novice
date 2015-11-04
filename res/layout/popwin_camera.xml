@@ -11,22 +11,34 @@
         android:text="相机大图" />
 
     <Button
-        android:id="@+id/bt_crop_large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="相册大图" />
-
-    <Button
         android:id="@+id/bt_camera_small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="相机小图" />
 
     <Button
-        android:id="@+id/bt_crop_small"
+        android:id="@+id/bt_pick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="相册小图" />
+        android:text="相册取图" />
+
+    <Button
+        android:id="@+id/bt_pick_crop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="相册裁剪" />
+
+    <Button
+        android:id="@+id/bt_camera_crop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="相机裁剪大图" />
+    
+    <Button
+        android:id="@+id/bt_camera_crop_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="相机裁剪小图" />
 
     <Button
         android:id="@+id/bt_cancel"

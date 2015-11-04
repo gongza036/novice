@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="点击" />
+        android:text="开始" />
 
     <ImageView
         android:id="@+id/iv_camera"
