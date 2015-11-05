@@ -235,7 +235,7 @@ public class CameraAct extends Activity implements OnClickListener {
 		intent.putExtra("outputX", 800);// 裁剪后输出图片的尺寸大小
 		intent.putExtra("outputY", 800);
 		intent.putExtra("scale", true);
-		intent.putExtra("scaleUpIfNeeded", true);
+		intent.putExtra("scaleUpIfNeeded", true);// 裁剪内容分辨率低于指定分辨率时放大，false则使用黑边填充
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, saveUri);
 		intent.putExtra("return-data", false); // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CUT
 		intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());// 图片格式
@@ -263,6 +263,7 @@ public class CameraAct extends Activity implements OnClickListener {
 		intent.putExtra("aspectY", 4);
 		intent.putExtra("outputX", 350);// 这里不能超过400
 		intent.putExtra("outputY", 200);
+		intent.putExtra("scaleUpIfNeeded", true);
 		intent.putExtra("return-data", true);
 		intent.putExtra("noFaceDetection", true);
 		startActivityForResult(intent, CROP_SMALL);
