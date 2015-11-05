@@ -14,7 +14,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
@@ -52,6 +51,7 @@ public class CameraAct extends Activity implements OnClickListener {
 	private void filePath() {
 		// tempFile = new File(getFilesDir().getAbsolutePath(),
 		// "/img/camera_act_tmp.jpg");
+		// 创建伪私有文件夹
 		File externalFilesDir = getExternalFilesDir("gongza");
 		tv_camera.setText(externalFilesDir.getAbsolutePath());
 	}
@@ -160,8 +160,11 @@ public class CameraAct extends Activity implements OnClickListener {
 
 	/** 进相机大图 */
 	private void IntentCameraLarge() {
-		tempFile = new File(Environment.getExternalStorageDirectory(),
-				getPhotoFileName());
+		// tempFile = new File(Environment.getExternalStorageDirectory(),
+		// getPhotoFileName());
+		// 使用私有路径
+		tempFile = new File(getExternalFilesDir("camera"), getPhotoFileName());
+
 		Intent cameraintent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		// 指定调用相机拍照后照片的储存路径
 		cameraintent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
@@ -192,8 +195,11 @@ public class CameraAct extends Activity implements OnClickListener {
 
 	/** 相册回来再进裁剪 */
 	private void IntentCropFromPick(Uri uri) {
-		cropFile = new File(Environment.getExternalStorageDirectory(),
-				getPhotoFileName());
+		// cropFile = new File(Environment.getExternalStorageDirectory(),
+		// getPhotoFileName());
+		// 使用私有路径
+		cropFile = new File(getExternalFilesDir("camera"), getPhotoFileName());
+
 		Uri saveUri = Uri.fromFile(cropFile);
 		Intent intent = new Intent("com.android.camera.action.CROP");
 		intent.setDataAndType(uri, "image/*");
@@ -213,8 +219,10 @@ public class CameraAct extends Activity implements OnClickListener {
 
 	/** 进相机再裁剪大图 */
 	private void IntentCropCamera() {
-		tempFile = new File(Environment.getExternalStorageDirectory(),
-				getPhotoFileName());
+		// tempFile = new File(Environment.getExternalStorageDirectory(),
+		// getPhotoFileName());
+		// 使用私有路径
+		tempFile = new File(getExternalFilesDir("camera"), getPhotoFileName());
 		Intent cameraintent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		// 指定调用相机拍照后照片的储存路径
 		cameraintent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
@@ -223,8 +231,10 @@ public class CameraAct extends Activity implements OnClickListener {
 
 	/** 相机回来再进裁剪大图 */
 	private void IntentCropFromCamera() {
-		cropFile = new File(Environment.getExternalStorageDirectory(),
-				getPhotoFileName());
+		// cropFile = new File(Environment.getExternalStorageDirectory(),
+		// getPhotoFileName());
+		cropFile = new File(getExternalFilesDir("camera"), getPhotoFileName());
+
 		Uri saveUri = Uri.fromFile(cropFile);
 		Uri uri = Uri.fromFile(tempFile);
 		Intent intent = new Intent("com.android.camera.action.CROP");
@@ -245,8 +255,10 @@ public class CameraAct extends Activity implements OnClickListener {
 
 	/** 进相机再裁剪小图 */
 	private void IntentCropSmallCamera() {
-		tempFile = new File(Environment.getExternalStorageDirectory(),
-				getPhotoFileName());
+		// tempFile = new File(Environment.getExternalStorageDirectory(),
+		// getPhotoFileName());
+		// 使用私有路径
+		tempFile = new File(getExternalFilesDir("camera"), getPhotoFileName());
 		Intent cameraintent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		// 指定调用相机拍照后照片的储存路径
 		cameraintent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
