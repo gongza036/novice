@@ -120,6 +120,8 @@ public class VolleyRecycelrViewAct extends Activity {
 		mPtrFrame.setRatioOfHeaderHeightToRefresh(1.0f);
 		mPtrFrame.setDurationToClose(200);
 		mPtrFrame.setDurationToCloseHeader(800);
+		//立即下拉刷新，不等UIReset
+		mPtrFrame.setEnabledNextPtrAtOnce(true);
 		// default is false
 		mPtrFrame.setPullToRefresh(false);
 		// default is true
