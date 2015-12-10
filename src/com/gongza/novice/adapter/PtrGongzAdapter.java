@@ -26,7 +26,7 @@ public class PtrGongzAdapter extends BaseAdapter {
 		mList.add("Volley+RecyclerView...");
 		mList.add("PullScrollView");
 		mList.add("CameraAct");
-		mList.add("10");
+		mList.add("RecyclerViewHeader");
 		mList.add("11");
 		mList.add("12");
 		mList.add("13");

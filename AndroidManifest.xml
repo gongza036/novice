@@ -49,6 +49,8 @@
         </activity>
         <activity android:name="com.gongza.novice.activity.CameraAct" >
         </activity>
+        <activity android:name="com.gongza.novice.activity.ActivityRecyclerViewHeader" >
+        </activity>
     </application>
 
 </manifest>

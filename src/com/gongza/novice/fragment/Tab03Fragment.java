@@ -1,5 +1,22 @@
 package com.gongza.novice.fragment;
 
+import com.gongza.novice.R;
+import com.gongza.novice.activity.ActivityJazzy;
+import com.gongza.novice.activity.ActivityRecyclerViewHeader;
+import com.gongza.novice.activity.ActivityWaterfallList;
+import com.gongza.novice.activity.CameraAct;
+import com.gongza.novice.activity.MovingImageViewAct;
+import com.gongza.novice.activity.ProgressWheelAct;
+import com.gongza.novice.activity.PullScrollViewAct;
+import com.gongza.novice.adapter.PtrGongzAdapter;
+import com.gongza.novice.ptrdemo.PtrMainActivity;
+import com.gongza.novice.volleydemo.TestVolleyAct;
+import com.gongza.novice.volleydemo.VolleyRecycelrViewAct;
+import com.gongza.views.listviewtools.HehuaPullToRefreshView;
+import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnFooterRefreshListener;
+import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnHeaderRefreshListener;
+import com.gongza.views.movingimageview.MovingImageView;
+
 import android.animation.Animator;
 import android.app.Fragment;
 import android.content.Intent;
@@ -18,22 +35,6 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-
-import com.gongza.novice.R;
-import com.gongza.novice.activity.ActivityJazzy;
-import com.gongza.novice.activity.ActivityWaterfallList;
-import com.gongza.novice.activity.CameraAct;
-import com.gongza.novice.activity.MovingImageViewAct;
-import com.gongza.novice.activity.ProgressWheelAct;
-import com.gongza.novice.activity.PullScrollViewAct;
-import com.gongza.novice.adapter.PtrGongzAdapter;
-import com.gongza.novice.ptrdemo.PtrMainActivity;
-import com.gongza.novice.volleydemo.TestVolleyAct;
-import com.gongza.novice.volleydemo.VolleyRecycelrViewAct;
-import com.gongza.views.listviewtools.HehuaPullToRefreshView;
-import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnFooterRefreshListener;
-import com.gongza.views.listviewtools.HehuaPullToRefreshView.OnHeaderRefreshListener;
-import com.gongza.views.movingimageview.MovingImageView;
 
 /**
  * 
@@ -142,6 +143,9 @@ public class Tab03Fragment extends Fragment {
 					break;
 				case 8:
 					startActivity(new Intent(getActivity(), CameraAct.class));
+					break;
+				case 9:
+					startActivity(new Intent(getActivity(), ActivityRecyclerViewHeader.class));
 					break;
 
 				default:
