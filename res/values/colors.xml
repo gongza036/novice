@@ -13,6 +13,12 @@
     
     <color name="holo_blue">#FF33E5B5</color>
     
-    
+    <!--recyclerviewsolution -->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#EE5555</color>
+    <color name="color_ff">#F0F0F0</color>
+    <color name="color_00">#8A000000</color>
+    <!--recyclerviewsolution -->
     
 </resources>

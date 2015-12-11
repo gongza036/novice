@@ -10,6 +10,7 @@ import com.gongza.novice.activity.ProgressWheelAct;
 import com.gongza.novice.activity.PullScrollViewAct;
 import com.gongza.novice.adapter.PtrGongzAdapter;
 import com.gongza.novice.ptrdemo.PtrMainActivity;
+import com.gongza.novice.recyclerviewsolution.SolutionMainActivity;
 import com.gongza.novice.volleydemo.TestVolleyAct;
 import com.gongza.novice.volleydemo.VolleyRecycelrViewAct;
 import com.gongza.views.listviewtools.HehuaPullToRefreshView;
@@ -146,6 +147,9 @@ public class Tab03Fragment extends Fragment {
 					break;
 				case 9:
 					startActivity(new Intent(getActivity(), ActivityRecyclerViewHeader.class));
+					break;
+				case 10:
+					startActivity(new Intent(getActivity(), SolutionMainActivity.class));
 					break;
 
 				default:

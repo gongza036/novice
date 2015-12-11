@@ -51,6 +51,14 @@
         </activity>
         <activity android:name="com.gongza.novice.activity.ActivityRecyclerViewHeader" >
         </activity>
+        <!--recyclerviewsolution -->
+        <activity android:name="com.gongza.novice.recyclerviewsolution.SolutionMainActivity" />
+        <activity android:name="com.gongza.novice.recyclerviewsolution.LinearLayoutActivity" />
+        <activity android:name="com.gongza.novice.recyclerviewsolution.EndlessGridLayoutActivity" />
+        <activity android:name="com.gongza.novice.recyclerviewsolution.EndlessLinearLayoutActivity" />
+        <activity android:name="com.gongza.novice.recyclerviewsolution.EndlessStaggeredGridLayoutActivity" />
+        
+        <!--recyclerviewsolution -->
     </application>
 
 </manifest>
