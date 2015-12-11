@@ -42,7 +42,12 @@ public class PtrMateriaAct extends Activity implements OnClickListener{
 		// LocalDisplay.dp2px(10));
 		header.setPadding(0, 15, 0, 15);
 		header.setPtrFrameLayout(mPtrFrameLayout);
-
+		
+		//让菊花不动
+		mPtrFrameLayout.setDurationToClose(100);
+	    mPtrFrameLayout.setPinContent(true);
+	    //让菊花不动
+	    
 		mPtrFrameLayout.setLoadingMinTime(1000);
 		mPtrFrameLayout.setDurationToCloseHeader(1500);
 		mPtrFrameLayout.setHeaderView(header);

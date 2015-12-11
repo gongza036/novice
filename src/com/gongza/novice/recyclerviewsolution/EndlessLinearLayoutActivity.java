@@ -9,6 +9,10 @@ import com.gongza.novice.recyclerviewsolution.utils.NetworkUtils;
 import com.gongza.novice.recyclerviewsolution.utils.RecyclerViewStateUtils;
 import com.gongza.novice.recyclerviewsolution.weight.LoadingFooter;
 import com.gongza.novice.recyclerviewsolution.weight.SampleHeader;
+import com.gongza.views.cube.ptr.PtrDefaultHandler;
+import com.gongza.views.cube.ptr.PtrFrameLayout;
+import com.gongza.views.cube.ptr.PtrGongzFrameLayout;
+import com.gongza.views.cube.ptr.PtrHandler;
 import com.gongza.views.recyclerviewsolution.EndlessRecyclerOnScrollListener;
 import com.gongza.views.recyclerviewsolution.HeaderAndFooterRecyclerViewAdapter;
 import com.gongza.views.recyclerviewsolution.RecyclerViewUtils;
@@ -34,7 +38,7 @@ import android.widget.Toast;
  * 带HeaderView的分页加载LinearLayout RecyclerView
  */
 public class EndlessLinearLayoutActivity extends Activity {
-
+	private PtrGongzFrameLayout mPtrFrame;
     /**服务器端一共多少条数据*/
     private static final int TOTAL_COUNTER = 64;
 
@@ -54,14 +58,14 @@ public class EndlessLinearLayoutActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.rv_solution_activity);
-
+        setContentView(R.layout.rv_solution_activity_endlesslinear);
+        initView();
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
 
         //init data
         ArrayList<ItemModel> dataList = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
 
             ItemModel item = new ItemModel();
             item.id = i;
@@ -83,6 +87,59 @@ public class EndlessLinearLayoutActivity extends Activity {
 
         mRecyclerView.addOnScrollListener(mOnScrollListener);
     }
+    
+    private void initView() {
+		mPtrFrame = (PtrGongzFrameLayout) findViewById(R.id.rotate_header_grid_view_frame);
+		mPtrFrame.setLastUpdateTimeRelateObject(this);
+		mPtrFrame.setPtrHandler(new PtrHandler() {
+			@Override
+			public void onRefreshBegin(PtrFrameLayout frame) {
+				 updateData();
+			}
+
+			@Override
+			public boolean checkCanDoRefresh(PtrFrameLayout frame,
+					View content, View header) {
+				return PtrDefaultHandler.checkContentCanBePulledDown(frame,
+						content, header);
+			}
+		});
+		// the following are default settings
+		mPtrFrame.setResistance(2.3f);
+		mPtrFrame.setRatioOfHeaderHeightToRefresh(1.0f);
+		mPtrFrame.setDurationToClose(200);
+		mPtrFrame.setDurationToCloseHeader(800);
+		// default is false
+		mPtrFrame.setPullToRefresh(false);
+		// default is true
+		mPtrFrame.setKeepHeaderWhenRefresh(true);
+		//立即下拉刷新，不等UIReset
+		mPtrFrame.setEnabledNextPtrAtOnce(true);
+		mPtrFrame.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// mPtrFrame.autoRefresh();
+			}
+		}, 100);
+		// updateData();
+		setupViews(mPtrFrame);
+	}
+
+    protected void setupViews(final PtrGongzFrameLayout ptrFrame) {
+		ptrFrame.setLoadingMinTime(1000);
+		// setHeaderTitle(R.string.ptr_demo_block_auto_fresh);
+		ptrFrame.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				ptrFrame.autoRefresh(true);
+			}
+		}, 500);
+	}
+	
+	protected void updateData() {
+		mPtrFrame.refreshComplete();
+    }
+    
 
     private void notifyDataSetChanged() {
         mHeaderAndFooterRecyclerViewAdapter.notifyDataSetChanged();

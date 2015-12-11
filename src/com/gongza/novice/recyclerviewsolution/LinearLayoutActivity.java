@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import com.gongza.novice.R;
 import com.gongza.novice.recyclerviewsolution.weight.SampleFooter;
 import com.gongza.novice.recyclerviewsolution.weight.SampleHeader;
+import com.gongza.views.cube.ptr.PtrDefaultHandler;
+import com.gongza.views.cube.ptr.PtrFrameLayout;
+import com.gongza.views.cube.ptr.PtrGongzFrameLayout;
+import com.gongza.views.cube.ptr.PtrHandler;
 import com.gongza.views.recyclerviewsolution.HeaderAndFooterRecyclerViewAdapter;
 import com.gongza.views.recyclerviewsolution.RecyclerViewUtils;
 
@@ -26,7 +30,7 @@ import android.widget.Toast;
  * 带HeaderView、FooterView的LinearLayout RecyclerView
  */
 public class LinearLayoutActivity extends Activity {
-
+	private PtrGongzFrameLayout mPtrFrame;
     private RecyclerView mRecyclerView = null;
 
     private DataAdapter mDataAdapter = null;
@@ -36,13 +40,13 @@ public class LinearLayoutActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.rv_solution_activity);
-
+        setContentView(R.layout.rv_solution_activity_linear);
+        initView();
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
 
         //init data
         ArrayList<String> dataList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 20; i++) {
             dataList.add("item" + i);
         }
 
@@ -59,6 +63,57 @@ public class LinearLayoutActivity extends Activity {
 
         //add a FooterView
         RecyclerViewUtils.setFooterView(mRecyclerView, new SampleFooter(this));
+    }
+    
+    private void initView() {
+		mPtrFrame = (PtrGongzFrameLayout) findViewById(R.id.rotate_header_grid_view_frame);
+		mPtrFrame.setLastUpdateTimeRelateObject(this);
+		mPtrFrame.setPtrHandler(new PtrHandler() {
+			@Override
+			public void onRefreshBegin(PtrFrameLayout frame) {
+				 updateData();
+			}
+
+			@Override
+			public boolean checkCanDoRefresh(PtrFrameLayout frame,
+					View content, View header) {
+				return PtrDefaultHandler.checkContentCanBePulledDown(frame,
+						content, header);
+			}
+		});
+		// the following are default settings
+		mPtrFrame.setResistance(2.3f);
+		mPtrFrame.setRatioOfHeaderHeightToRefresh(1.0f);
+		mPtrFrame.setDurationToClose(200);
+		mPtrFrame.setDurationToCloseHeader(800);
+		// default is false
+		mPtrFrame.setPullToRefresh(false);
+		// default is true
+		mPtrFrame.setKeepHeaderWhenRefresh(true);
+		mPtrFrame.setEnabledNextPtrAtOnce(true);
+		mPtrFrame.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// mPtrFrame.autoRefresh();
+			}
+		}, 100);
+		// updateData();
+		setupViews(mPtrFrame);
+	}
+
+    protected void setupViews(final PtrGongzFrameLayout ptrFrame) {
+		ptrFrame.setLoadingMinTime(1000);
+		// setHeaderTitle(R.string.ptr_demo_block_auto_fresh);
+		ptrFrame.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				ptrFrame.autoRefresh(true);
+			}
+		}, 500);
+	}
+	
+	protected void updateData() {
+		mPtrFrame.refreshComplete();
     }
 
     private class DataAdapter extends RecyclerView.Adapter {
