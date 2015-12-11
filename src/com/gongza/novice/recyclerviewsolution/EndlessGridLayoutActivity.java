@@ -89,6 +89,16 @@ public class EndlessGridLayoutActivity extends Activity {
     private void initView() {
 		mPtrFrame = (PtrGongzFrameLayout) findViewById(R.id.rotate_header_grid_view_frame);
 		mPtrFrame.setLastUpdateTimeRelateObject(this);
+		// the following are default settings
+		mPtrFrame.setResistance(2.3f);
+		mPtrFrame.setRatioOfHeaderHeightToRefresh(1.0f);
+		mPtrFrame.setDurationToClose(200);
+		mPtrFrame.setDurationToCloseHeader(800);
+		// default is false
+		mPtrFrame.setPullToRefresh(false);
+		// default is true
+		mPtrFrame.setKeepHeaderWhenRefresh(true);
+		mPtrFrame.setEnabledNextPtrAtOnce(true);
 		mPtrFrame.setPtrHandler(new PtrHandler() {
 			@Override
 			public void onRefreshBegin(PtrFrameLayout frame) {
@@ -102,16 +112,6 @@ public class EndlessGridLayoutActivity extends Activity {
 						content, header);
 			}
 		});
-		// the following are default settings
-		mPtrFrame.setResistance(2.3f);
-		mPtrFrame.setRatioOfHeaderHeightToRefresh(1.0f);
-		mPtrFrame.setDurationToClose(200);
-		mPtrFrame.setDurationToCloseHeader(800);
-		// default is false
-		mPtrFrame.setPullToRefresh(false);
-		// default is true
-		mPtrFrame.setKeepHeaderWhenRefresh(true);
-		mPtrFrame.setEnabledNextPtrAtOnce(true);
 		mPtrFrame.postDelayed(new Runnable() {
 			@Override
 			public void run() {
