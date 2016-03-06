@@ -1,78 +1,71 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    tools:context="com.gongza.novice.fragment.Tab01Fragment">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gongza.novice.fragment.Tab01Fragment" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/test"
-        android:textColor="#ccc" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="invisible" >
+        android:layout_width="fill_parent"
+        android:layout_height="37dp"
+        android:orientation="horizontal" >
 
         <LinearLayout
-            android:id="@+id/layout_ptrpull"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:id="@+id/id_ll_chat"
+            android:layout_width="3dp"
+            android:orientation="horizontal"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
 
             <TextView
+                android:id="@+id/id_tv_chat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:text="下拉刷新栗子" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#f0f0f0" />
+                android:text="聊天"
+                android:textColor="#008000" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layout_volley"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_width="3dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
 
             <TextView
+                android:id="@+id/id_tv_friend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:text="volley栗子" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#f0f0f0" />
+                android:textColor="#000000"
+                android:text="发现" />
         </LinearLayout>
-        
+
         <LinearLayout
-            android:id="@+id/layout_volley_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_width="3dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:text="volleyRecycler" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#f0f0f0" />
+                android:textColor="#000000"
+                android:id="@+id/id_tv_contact"
+                android:text="通讯录" />
         </LinearLayout>
     </LinearLayout>
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/id_iv_tabline"
+        android:layout_width="100dp"
+        android:layout_height="3dp"
+        android:background="#008000" />
+    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

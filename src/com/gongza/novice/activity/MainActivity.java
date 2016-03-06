@@ -1,13 +1,16 @@
 package com.gongza.novice.activity;
 
-import android.app.Activity;
+import com.gongza.novice.R;
+import com.gongza.novice.fragment.Tab01Fragment;
+import com.gongza.novice.fragment.Tab02Fragment;
+import com.gongza.novice.fragment.Tab03Fragment;
+import com.gongza.novice.fragment.Tab04Fragment;
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,19 +18,13 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.gongza.novice.R;
-import com.gongza.novice.fragment.Tab01Fragment;
-import com.gongza.novice.fragment.Tab02Fragment;
-import com.gongza.novice.fragment.Tab03Fragment;
-import com.gongza.novice.fragment.Tab04Fragment;
-
 /**
  * 主界面
  * 
  * @author gongza
  *
  */
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends FragmentActivity implements OnClickListener {
 	private LinearLayout layout_main;
 	private TextView tv_tab1, tv_tab2, tv_tab3, tv_tab4;
 	private FragmentManager fragmentManager;
