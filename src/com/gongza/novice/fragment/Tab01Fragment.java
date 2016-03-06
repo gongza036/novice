@@ -37,7 +37,7 @@ public class Tab01Fragment extends Fragment implements OnClickListener {
 	private TextView mChatTextView;
 	private TextView mFriendTextView;
 	private TextView mContactTextView;
-	private LinearLayout mChatLinearLayout;
+	private LinearLayout id_ll_chat, id_ll_friend, id_ll_contact;
 
 	private ImageView mTabline;
 	private int mScreen1_3;
@@ -55,6 +55,7 @@ public class Tab01Fragment extends Fragment implements OnClickListener {
 	private void initView(View view, LayoutInflater inflater) {
 		initTabLine(view);
 		setViewPager(view);
+		mViewPager.setCurrentItem(1);
 	}
 
 	private void initTabLine(View view) {
@@ -73,7 +74,12 @@ public class Tab01Fragment extends Fragment implements OnClickListener {
 		mChatTextView = (TextView) view.findViewById(R.id.id_tv_chat);
 		mFriendTextView = (TextView) view.findViewById(R.id.id_tv_friend);
 		mContactTextView = (TextView) view.findViewById(R.id.id_tv_contact);
-		mChatLinearLayout = (LinearLayout) view.findViewById(R.id.id_ll_chat);
+		id_ll_chat = (LinearLayout) view.findViewById(R.id.id_ll_chat);
+		id_ll_friend = (LinearLayout) view.findViewById(R.id.id_ll_friend);
+		id_ll_contact = (LinearLayout) view.findViewById(R.id.id_ll_contact);
+		id_ll_chat.setOnClickListener(this);
+		id_ll_friend.setOnClickListener(this);
+		id_ll_contact.setOnClickListener(this);
 
 		mDatas = new ArrayList<>();
 
@@ -151,7 +157,26 @@ public class Tab01Fragment extends Fragment implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.id_ll_chat:
+			resetTextView();
+			mChatTextView.setTextColor(Color.parseColor("#008000"));
+			mViewPager.setCurrentItem(0);
+			break;
+		case R.id.id_ll_friend:
+			resetTextView();
+			mFriendTextView.setTextColor(Color.parseColor("#008000"));
+			mViewPager.setCurrentItem(1);
+			break;
+		case R.id.id_ll_contact:
+			resetTextView();
+			mContactTextView.setTextColor(Color.parseColor("#008000"));
+			mViewPager.setCurrentItem(2);
+			break;
 
+		default:
+			break;
+		}
 	}
 
 	protected void resetTextView() {
