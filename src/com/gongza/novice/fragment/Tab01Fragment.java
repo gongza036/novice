@@ -130,6 +130,7 @@ public class Tab01Fragment extends Fragment implements OnClickListener {
 			@Override
 			public void onPageScrolled(int position, float positionOffset, int positionOffsetPx) {
 				Log.e("TAG", position + " , " + positionOffset + " , " + positionOffsetPx);
+				//mCurrentPageIndex * 1/3  + positionOffset * 1/3
 				LinearLayout.LayoutParams lp = (android.widget.LinearLayout.LayoutParams) mTabline.getLayoutParams();
 				if (mCurrentPageIndex == 0 && position == 0)// 0->1
 				{
