@@ -84,8 +84,8 @@ public class Tab01Fragment extends Fragment implements OnClickListener {
 		mDatas = new ArrayList<>();
 
 		TabViewPager1Fragment tab01 = new TabViewPager1Fragment();
-		TabViewPager1Fragment tab02 = new TabViewPager1Fragment();
-		TabViewPager1Fragment tab03 = new TabViewPager1Fragment();
+		TabViewPager2Fragment tab02 = new TabViewPager2Fragment();
+		TabViewPager3Fragment tab03 = new TabViewPager3Fragment();
 
 		mDatas.add(tab01);
 		mDatas.add(tab02);
