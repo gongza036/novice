@@ -144,7 +144,6 @@ public class TabViewPager3Fragment extends Fragment {
 	Handler viewPagerhandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			// 更新我们UI页面
 			if (vp_banner == null) {
 				return;
 			}
