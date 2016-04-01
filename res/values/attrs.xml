@@ -939,4 +939,19 @@
         <attr name="headerVisibleHeight" format="dimension" />
     </declare-styleable>
 
+     <declare-styleable name="SpringView">
+        <attr name="type_sv">
+            <enum name="overlap" value="0"/>
+            <enum name="follow" value="1"/>
+        </attr>
+        <attr name="give_sv">
+            <enum name="both" value="0"/>
+            <enum name="top" value="1"/>
+            <enum name="bottom" value="2"/>
+            <enum name="none" value="3"/>
+        </attr>
+        <attr name="header_sv" format="reference"/>
+        <attr name="footer_sv" format="reference"/>
+    </declare-styleable>
+    
 </resources>
