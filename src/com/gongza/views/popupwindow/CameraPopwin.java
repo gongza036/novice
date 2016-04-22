@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
@@ -125,4 +126,16 @@ public class CameraPopwin extends PopupWindow {
 		
 		public void cameraCropSmallClick(View v);
 	};
+	
+	private void setWindowAlpha(Activity context) {
+		WindowManager.LayoutParams params = context.getWindow().getAttributes();
+		params.alpha = 0.7f;
+		context.getWindow().setAttributes(params);
+	}
+
+	private void resetWindowAlpha(Activity context) {
+		WindowManager.LayoutParams params = context.getWindow().getAttributes();
+		params.alpha = 1.0f;
+		context.getWindow().setAttributes(params);
+	}
 }
