@@ -28,7 +28,7 @@ public class PtrGongzAdapter extends BaseAdapter {
 		mList.add("CameraAct");
 		mList.add("RecyclerViewHeader");
 		mList.add("(大招)RecyclerView整体解决方案");
-		mList.add("12");
+		mList.add("(大招)autolayout自动适配方案");
 		mList.add("13");
 		mInflater = LayoutInflater.from(mContext);
 	}

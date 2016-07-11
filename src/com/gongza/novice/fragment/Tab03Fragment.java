@@ -4,6 +4,7 @@ import com.gongza.novice.R;
 import com.gongza.novice.activity.ActivityJazzy;
 import com.gongza.novice.activity.ActivityRecyclerViewHeader;
 import com.gongza.novice.activity.ActivityWaterfallList;
+import com.gongza.novice.activity.AutolayoutAct;
 import com.gongza.novice.activity.CameraAct;
 import com.gongza.novice.activity.MovingImageViewAct;
 import com.gongza.novice.activity.ProgressWheelAct;
@@ -49,8 +50,7 @@ public class Tab03Fragment extends Fragment {
 	MovingImageView image;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.tab_3, container, false);
 		initView(view);
 
@@ -61,86 +61,76 @@ public class Tab03Fragment extends Fragment {
 		lv_tab3 = (ListView) view.findViewById(R.id.lv_tab3);
 		adapter = new PtrGongzAdapter(getActivity());
 		lv_tab3.setAdapter(adapter);
-		layout_refresh = (HehuaPullToRefreshView) view
-				.findViewById(R.id.layout_refresh);
+		layout_refresh = (HehuaPullToRefreshView) view.findViewById(R.id.layout_refresh);
 		lv_tab3.setOnScrollListener(new GzOnScrollListener());
-		layout_refresh
-				.setOnHeaderRefreshListener(new OnHeaderRefreshListener() {
+		layout_refresh.setOnHeaderRefreshListener(new OnHeaderRefreshListener() {
+
+			@Override
+			public void onHeaderRefresh(HehuaPullToRefreshView view) {
+				new CountDownTimer(2000, 1000) {
 
 					@Override
-					public void onHeaderRefresh(HehuaPullToRefreshView view) {
-						new CountDownTimer(2000, 1000) {
-
-							@Override
-							public void onTick(long millisUntilFinished) {
-
-							}
-
-							@Override
-							public void onFinish() {
-								layout_refresh.onHeaderRefreshComplete();
-							}
-						}.start();
+					public void onTick(long millisUntilFinished) {
 
 					}
-				});
-		layout_refresh
-				.setOnFooterRefreshListener(new OnFooterRefreshListener() {
 
 					@Override
-					public void onFooterRefresh(HehuaPullToRefreshView view) {
-						new CountDownTimer(2000, 1000) {
+					public void onFinish() {
+						layout_refresh.onHeaderRefreshComplete();
+					}
+				}.start();
 
-							@Override
-							public void onTick(long millisUntilFinished) {
+			}
+		});
+		layout_refresh.setOnFooterRefreshListener(new OnFooterRefreshListener() {
 
-							}
+			@Override
+			public void onFooterRefresh(HehuaPullToRefreshView view) {
+				new CountDownTimer(2000, 1000) {
 
-							@Override
-							public void onFinish() {
-								layout_refresh.onFooterRefreshComplete();
-
-							}
-						}.start();
+					@Override
+					public void onTick(long millisUntilFinished) {
 
 					}
-				});
+
+					@Override
+					public void onFinish() {
+						layout_refresh.onFooterRefreshComplete();
+
+					}
+				}.start();
+
+			}
+		});
 		lv_tab3.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 				switch (position) {
 				case 0:
-					startActivity(new Intent(getActivity(),
-							MovingImageViewAct.class));
+					startActivity(new Intent(getActivity(), MovingImageViewAct.class));
 					break;
 				case 1:
-					startActivity(new Intent(getActivity(),
-							ProgressWheelAct.class));
+					startActivity(new Intent(getActivity(), ProgressWheelAct.class));
 					break;
 				case 2:
 					startActivity(new Intent(getActivity(), ActivityJazzy.class));
 					break;
 				case 3:
-					startActivity(new Intent(getActivity(),
-							ActivityWaterfallList.class));
+					startActivity(new Intent(getActivity(), ActivityWaterfallList.class));
 					break;
 				case 4:
-					startActivity(new Intent(getActivity(),
-							PtrMainActivity.class));
+					startActivity(new Intent(getActivity(), PtrMainActivity.class));
 					break;
 				case 5:
 					startActivity(new Intent(getActivity(), TestVolleyAct.class));
 					break;
 				case 6:
-					startActivity(new Intent(getActivity(),
-							VolleyRecycelrViewAct.class));
+					startActivity(new Intent(getActivity(), VolleyRecycelrViewAct.class));
 					break;
 				case 7:
-					startActivity(new Intent(getActivity(),
-							PullScrollViewAct.class));
+					startActivity(new Intent(getActivity(), PullScrollViewAct.class));
 					break;
 				case 8:
 					startActivity(new Intent(getActivity(), CameraAct.class));
@@ -150,6 +140,9 @@ public class Tab03Fragment extends Fragment {
 					break;
 				case 10:
 					startActivity(new Intent(getActivity(), SolutionMainActivity.class));
+					break;
+				case 11:
+					startActivity(new Intent(getActivity(), AutolayoutAct.class));
 					break;
 
 				default:
@@ -190,12 +183,10 @@ public class Tab03Fragment extends Fragment {
 	private Boolean isContentRefreshing = false;// 刷新用的开关
 
 	// listview 滚动监听 上拉加载用的
-	class GzOnScrollListener implements
-			android.widget.AbsListView.OnScrollListener {
+	class GzOnScrollListener implements android.widget.AbsListView.OnScrollListener {
 
 		@Override
-		public void onScroll(AbsListView arg0, int firstVisibleItem,
-				int visibleItemCount, int totalItemCount) {
+		public void onScroll(AbsListView arg0, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 			if (firstVisibleItem > 3) {
 			} else {
 			}
@@ -203,12 +194,10 @@ public class Tab03Fragment extends Fragment {
 			startfirstItemIndex = firstVisibleItem;
 			startlastItemIndex = firstVisibleItem + visibleItemCount - 1;
 			// 判断向下或者向上滑动了
-			if ((endfirstItemIndex > startfirstItemIndex)
-					&& (endfirstItemIndex > 0)) {
+			if ((endfirstItemIndex > startfirstItemIndex) && (endfirstItemIndex > 0)) {
 				// 向上
 				animHandler.sendEmptyMessage(400);
-			} else if ((endlastItemIndex < startlastItemIndex)
-					&& (endlastItemIndex > 0)) {
+			} else if ((endlastItemIndex < startlastItemIndex) && (endlastItemIndex > 0)) {
 				// 向下
 				animHandler.sendEmptyMessage(500);
 
@@ -232,16 +221,13 @@ public class Tab03Fragment extends Fragment {
 			int first = view.getFirstVisiblePosition();
 			int count = view.getChildCount();
 			if (adapter != null
-					&& (scrollState == SCROLL_STATE_IDLE
-							|| (first + count > adapter.getCount()) || (first == 0))) {
+					&& (scrollState == SCROLL_STATE_IDLE || (first + count > adapter.getCount()) || (first == 0))) {
 				int firstVisiblePosition = view.getFirstVisiblePosition();
 				int lastVisiblePosition = view.getLastVisiblePosition();
 
 			}
 
-			if (adapter != null
-					&& (view.getLastVisiblePosition() == view.getCount() - 1)
-					&& !isContentRefreshing) {
+			if (adapter != null && (view.getLastVisiblePosition() == view.getCount() - 1) && !isContentRefreshing) {
 				// Toast.makeText(getActivity(), "到底部了", Toast.LENGTH_SHORT)
 				// .show();
 				isContentRefreshing = true;
@@ -272,8 +258,7 @@ public class Tab03Fragment extends Fragment {
 
 			if (null != view) {
 				// 加载动画
-				Animation animation = AnimationUtils.loadAnimation(
-						getActivity(), R.anim.hehua_list_anim);
+				Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.hehua_list_anim);
 				view.startAnimation(animation);
 			}
 		}
